@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# update clamav virus definition database
+/usr/local/bin/freshclam
+
+# set todays date as a variable
+d=$(date +%Y-%m-%d)
+
+mkdir /home/fransai/Documents/code/bash/clamav/scan_logs/"$d"
+
+#clamscan command
+/usr/local/bin/freshclam >>  /home/fransai/Documents/code/bash/clamav/scan_logs/"$d"/freshclam.txt
+
+clamscan --bell --exclude-dir=/sys -i -r / >> /home/fransai/Documents/code/bash/clamav/scan_logs/"$d"/clamscan.txt
